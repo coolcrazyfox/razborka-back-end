@@ -14,23 +14,43 @@ const client =  new Client(
 
     }
 )
+//connect to the  database
+connect();
+async function connect(){
+    try{
+        await client.connect()
+        console.log(`Connected`)
+    }catch (e) {
+        console.error(`connection failed ${e}`)
+    }
+
+}
+
 
 const PORT = process.env.PORT || 8080
 
 const app = express()
 
-app.use(express.json())
+// app.use(express.json())
 // app.use('/api', userRouter)
 // app.use('/api', postRouter)
 // app.use('/api', deviceRouter)
-app.get('/api',(req, res)=>{
-        // try{
-        //
-        // }catch (e) {
-        //
-        // }
-        // res.json()
-    res.send('my text + NODEJS!!')
+
+//respond with "my text" when a GET request is  made to the homepage
+
+app.get('/device', async (req, res)=>{
+    try{
+        const results =await client.query('select * from device')
+        res.json(results.rows)
+
+    }catch (e) {
+        console.log('There was an error')
+        res.send('There was an error')
+
+    }
+    res.json([])
+
+    // res.send('my text + NODEJS!!')
 })
 
 
