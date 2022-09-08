@@ -3,6 +3,18 @@ const userRouter = require('./routes/user.routes')
 const postRouter = require('./routes/post.routes')
 const deviceRouter = require('./routes/device.routes')
 
+const  {Client} = require('pg')
+const client =  new Client(
+    {
+        user:'postgres',
+        password:'man21061985xxx',
+        host:'localhost',
+        port:5432,
+        database:'first'
+
+    }
+)
+
 const PORT = process.env.PORT || 8080
 
 const app = express()
@@ -10,7 +22,20 @@ const app = express()
 app.use(express.json())
 // app.use('/api', userRouter)
 // app.use('/api', postRouter)
-app.use('/api', deviceRouter)
+// app.use('/api', deviceRouter)
+app.get('/api',(req, res)=>{
+        // try{
+        //
+        // }catch (e) {
+        //
+        // }
+        // res.json()
+    res.send('my text + NODEJS!!')
+})
+
+
+
+
 app.use(express.static('static'))// for static any files
 
 // app.get('/',(req, res)=>{

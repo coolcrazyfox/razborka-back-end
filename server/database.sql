@@ -10,7 +10,7 @@
 --     user_id INTEGER,
 --     FOREIGN KEY (user_id) REFERENCES person (id)
 -- );
-create TABLE device(
+CREATE TABLE device(
     id SERIAL PRIMARY KEY,
     model VARCHAR(255),
     country VARCHAR(255),
@@ -21,7 +21,9 @@ create TABLE device(
     price_store DECIMAL(8,2),
     count_store INTEGER DEFAULT 0,
     link_adr VARCHAR(255),
-    image_id VARCHAR(255),
+    image_id VARCHAR(255)
+    );
+
 --     FOREIGN KEY (user_id) REFERENCES person (id)
 );
 
